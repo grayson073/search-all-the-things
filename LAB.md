@@ -42,11 +42,6 @@ all are going to work!. Requirements:
 
 1. Sketch out UI and decompose into components
 1. Transfer to tree diagram and map out state, props and event
-1. Test components:
-    - Trigger events
-    - Use snapshot testing
-        - Include each state if component has multiple representations
-    - You only need to snapshot test `App`
 
 ## Development Requirements
 
@@ -62,7 +57,7 @@ all are going to work!. Requirements:
 
 ## Rubric
 
-* Follow component architecture guidelines **4pts**
-* Functionality and Usability to Requirements **6pts**
-* Idiomatic React **3pts**
+* Follow component architecture guidelines **2pts**
+* Functionality and Usability to Requirements **4pts**
+* Idiomatic React **2pts**
 * Clean code and project organization **2pts**
