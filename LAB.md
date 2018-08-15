@@ -43,6 +43,13 @@ all are going to work!. Requirements:
 1. Sketch out UI and decompose into components
 1. Transfer to tree diagram and map out state, props and event
 
+## Testing Requirements
+
+Test components:	
+- Trigger events	
+- Use snapshot testing	
+    - Include each state if component has multiple representations	
+
 ## Development Requirements
 
 1. Standard project setup (config, package.json, etc.)
