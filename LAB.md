@@ -5,7 +5,7 @@ Use webpack and react to create a tested app that allows a user to search an API
 
 ## Choose an API
 
-Possible API choices:
+_Possible_ API choices:
 * http://www.omdbapi.com/
 * https://developers.google.com/books/
 * https://pokeapi.co/api/v2/
