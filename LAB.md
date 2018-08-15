@@ -60,6 +60,8 @@ Test components:
 1. Components
     - Lift state
     - Data down, events up
+1. Services
+    - Encapsulate the API calls into a module in the `src/services` folder
 1. Keep code clean
 
 ## Rubric
