@@ -14,7 +14,7 @@ export default class Header extends Component {
 
     return (
       <section>
-        >>> Here is the search section:
+        ...And here is the search section within header:
         <Search onSearch={onSearch}/>
       </section>
     );
