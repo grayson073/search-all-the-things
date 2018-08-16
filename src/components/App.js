@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-
+import Header from './Header';
 class App extends Component {
+
+
 
   render() {
 
@@ -8,6 +10,9 @@ class App extends Component {
       <main>
         <section>
           <h2>SUPER REACT</h2>
+        </section>
+        <section>
+          <Header/>
         </section>
       </main>
     );
