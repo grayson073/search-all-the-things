@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Company.css';
+// import styles from './Company.css';
 
 export default class Companies extends Component {
 
