@@ -35,19 +35,6 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              ['env', {
-                targets: {
-                  browsers: 'Chrome 65'
-                  // browsers: ['last 2 versions', 'safari >= 7'] << options to customize
-                },
-              }],
-              'react',
-            ],
-            plugins: [
-              require('babel-plugin-transform-object-rest-spread'),
-              require('babel-plugin-transform-class-properties')
-            ],
             cacheDirectory: true
           }
         }
