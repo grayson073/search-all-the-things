@@ -11,7 +11,6 @@ export default class Companies extends Component {
   render() {
 
     const { companies } = this.props;
-    console.log('COMPANIES on companies.js', companies);
     return (
       <ul>
         {companies.map((company, i) => (

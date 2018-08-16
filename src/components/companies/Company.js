@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from './Company.css';
 
 export default class Companies extends Component {
 
@@ -15,7 +16,11 @@ export default class Companies extends Component {
 
     return (
       <li>
-        <h2>{companyName}</h2>
+        <h3>{companyName} ({symbol})</h3><br/>
+        Latest Price: {latestPrice}<br/>
+        52-Week High: {week52High}<br/>
+        52-Week Low: {week52Low}<br/>
+        YTD Change: {ytdChange}<br/><br/>
       </li>
     );
   }
