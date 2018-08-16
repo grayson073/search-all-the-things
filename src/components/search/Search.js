@@ -32,7 +32,7 @@ handleSectorSelect = (search) => {
 handleSubmit = event => {
   event.preventDefault();
   this.props.onSearch(this.state.search);
-}
+};
 
 render() {
 
