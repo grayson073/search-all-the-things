@@ -36,7 +36,7 @@ handleSubmit = event => {
 
 render() {
 
-  const { sectors } = this.state;
+  const { sectors, search } = this.state;
 
   return (
     <form className="search-form" onSubmit={event => this.handleSubmit(event)}>
@@ -46,7 +46,7 @@ render() {
           <option key={sector} value={sector}>{sector}</option>
         ))}
       </select>
-      <button>Search</button>
+      <button disabled={!search}>Search</button>
     </form>
   );
 }
