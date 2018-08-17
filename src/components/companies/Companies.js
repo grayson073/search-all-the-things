@@ -3,23 +3,25 @@ import PropTypes from 'prop-types';
 import Company from './Company';
 
 export default class Companies extends Component {
+  state = {
+    page: 0
+  };
 
   static propTypes = {
-    companies: PropTypes.arrayOf(Object)
+    results: PropTypes.arrayOf(Array),
   };
 
   render() {
-
-    const { companies } = this.props;
-    if(companies) {
-      return (
-        <ul>
-          {companies.map((company, i) => (
-            <Company key={i} company={company}/>
-          ))}
-        </ul>
-      );
-    }
+    const { page } = this.state;
+    const { results } = this.props;
+    if(!results) return null;
+    return (
+      <ul>
+        {results[page].map((result, i) => (
+          <Company key={i} company={result}/>
+        ))}
+      </ul>
+    );
   }
 
 }
