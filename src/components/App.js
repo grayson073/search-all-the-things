@@ -7,54 +7,40 @@ class App extends Component {
 
   state = {
     sector: '',
-    companies: [],
-    pages: []
+    results: null,
+   
   };
 
   handleSearch = (sector) => {
-    // const { pages } = this.state;
     this.setState({ sector }, () => {
       getStockData(this.state.sector)
-        .then(companies => {
-          this.setState({ companies });
-          // for(let i = 0; i < companies.length; i += 25) {
-          //   let chunk = companies.slice(i, i + 25);
-          //   pages.push(chunk);
-          // }
-          // this.setState({ pages });
+        .then(results => {
+          let pages = [];
+          for(let i = 0; i < results.length; i += 25) {
+            let chunk = results.slice(i, i + 25);
+            pages.push(chunk);
+          }
+          this.setState({ results: pages });  
         });
     });
-    console.log('Lookzzz', this.state.companies);
   
   };
 
-  // handlePaging(chunkSize) {
-  //   const { companies, search } = this.state;
-  //   search.length = 0;
-  //   for(let i = 0; i < companies.length; i += chunkSize) {
-  //     let chunk = companies.slice(i, i + chunkSize);
-  //     search.push(chunk);
-  //   }
-  //   this.setState({ search });
-  //   console.log(search);
-  // }
-
   render() {
 
-    const { companies, sector, searchResults } = this.state;
+    const { results, sector, searchResults } = this.state;
 
     return (
       <main>
         <section>
           <h2>SUPER REACT</h2>
-          <button onClick={() => this.handlePaging(10)}>Click</button>
         </section>
         <section>
           <Header onSearch={this.handleSearch} sector={sector}/>
         </section>
         
         <section>
-          <Companies companies={companies}/>
+          <Companies results={results}/>
         </section>
 
         <section>
