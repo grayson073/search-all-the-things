@@ -11,13 +11,15 @@ export default class Companies extends Component {
   render() {
 
     const { companies } = this.props;
-    return (
-      <ul>
-        {companies.map((company, i) => (
-          <Company key={i} company={company}/>
-        ))}
-      </ul>
-    );
+    if(companies) {
+      return (
+        <ul>
+          {companies.map((company, i) => (
+            <Company key={i} company={company}/>
+          ))}
+        </ul>
+      );
+    }
   }
 
 }

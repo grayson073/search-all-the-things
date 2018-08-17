@@ -8,30 +8,36 @@ class App extends Component {
   state = {
     sector: '',
     companies: [],
-    search: []
+    pages: []
   };
 
   handleSearch = (sector) => {
+    // const { pages } = this.state;
     this.setState({ sector }, () => {
       getStockData(this.state.sector)
         .then(companies => {
-          console.log(companies);
           this.setState({ companies });
-          
+          // for(let i = 0; i < companies.length; i += 25) {
+          //   let chunk = companies.slice(i, i + 25);
+          //   pages.push(chunk);
+          // }
+          // this.setState({ pages });
         });
     });
+    console.log('Lookzzz', this.state.companies);
+  
   };
 
-  handlePaging(chunkSize) {
-    const { companies, search } = this.state;
-    search.length = 0;
-    for(let i = 0; i < companies.length; i += chunkSize) {
-      let chunk = companies.slice(i, i + chunkSize);
-      search.push(chunk);
-    }
-    this.setState({ search });
-    console.log(search);
-  }
+  // handlePaging(chunkSize) {
+  //   const { companies, search } = this.state;
+  //   search.length = 0;
+  //   for(let i = 0; i < companies.length; i += chunkSize) {
+  //     let chunk = companies.slice(i, i + chunkSize);
+  //     search.push(chunk);
+  //   }
+  //   this.setState({ search });
+  //   console.log(search);
+  // }
 
   render() {
 
