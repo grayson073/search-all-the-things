@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import qs from 'query-string';
 export default class Search extends Component {
 
   state = {
@@ -22,16 +22,34 @@ export default class Search extends Component {
   };
 
 static propTypes = {
-  onSearch: PropTypes.func.isRequired
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
+
+componentDidMount() {
+  const { location } = this.props;
+  const { search = '' } = qs.parse(location.search);
+  this.setState({ search });
+}
 
 handleSectorSelect = (search) => {
   this.setState({ search });
 };
 
-handleSubmit = event => {
+handleSubmitSector = event => {
   event.preventDefault();
-  this.props.onSearch(this.state.search);
+  const { search } = this.state;
+  if(!search) return;
+
+  const { history } = this.props;
+  history.push({
+    pathname: '/companies',
+    search: qs.stringify({ search })
+  });
+};
+
+handleChangeSearch = ({ target }) => {
+  this.setState({ search: target.value });
 };
 
 render() {
@@ -39,7 +57,7 @@ render() {
   const { sectors, search } = this.state;
 
   return (
-    <form className="search-form" onSubmit={event => this.handleSubmit(event)}>
+    <form className="search-form" onSubmit={event => this.handleSubmitSector(event)}>
       <select onChange={({ target }) => this.handleSectorSelect(target.value)}>
         <option value="" >Select a sector:</option>
         {sectors.map(sector => (
