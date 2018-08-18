@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Companies from './companies/Companies';
-import Paging from './Paging';
 import { getStockData } from '../services/iextradingAPI';
 class App extends Component {
 
   state = {
     sector: '',
     results: null,
+    page: 0
    
   };
 
@@ -15,20 +15,21 @@ class App extends Component {
     this.setState({ sector }, () => {
       getStockData(this.state.sector)
         .then(results => {
+          console.log('ALL RESULTS', results);
           let pages = [];
           for(let i = 0; i < results.length; i += 25) {
             let chunk = results.slice(i, i + 25);
             pages.push(chunk);
           }
+          console.log('CHUNKS FOR EACH PAGE', pages);
           this.setState({ results: pages });  
         });
     });
-  
   };
 
   render() {
 
-    const { results, sector, searchResults } = this.state;
+    const { results, sector } = this.state;
 
     return (
       <main>
@@ -41,10 +42,6 @@ class App extends Component {
         
         <section>
           <Companies results={results}/>
-        </section>
-
-        <section>
-          <Paging onPaging={this.handlePaging} searchResults={searchResults}/>
         </section>
       </main>
     );
