@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Companies from './companies';
 import qs from 'query-string';
 import PropTypes from 'prop-types';
-// import Paging from '../paging';
+import Paging from '../paging/Paging';
 import { getSectorData, getStockData } from '../../services/iextradingAPI';
 
 export default class Results extends Component {
@@ -10,7 +10,7 @@ export default class Results extends Component {
   state = {
     search: '',
     results: null,
-    page: 0
+    page: 0,
   };
 
   static propTypes = {
@@ -26,6 +26,10 @@ export default class Results extends Component {
     if(oldSearch === this.searchTerm) return;
     this.searchStocks();
   }
+
+  handlePaging = (page) => {
+    this.setState(page);
+  };
 
   get searchTerm() {
     const { location } = this.props;
@@ -58,10 +62,13 @@ export default class Results extends Component {
   }
  
   render() {
-    const { results } = this.state;
+    const { results, page } = this.state;
 
     return (
-      <Companies results={results}/> 
+      <div>
+        <Paging onPage={this.handlePaging} page={page} results={results}/>
+        <Companies results={results} page={page}/>
+      </div>
     );
   }
 }

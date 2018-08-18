@@ -5,23 +5,25 @@ export default class Paging extends Component {
 
   static propTypes = {
     page: PropTypes.number,
-    totalPages: PropTypes.number,
+    results: PropTypes.arrayOf(Array),
     onPage: PropTypes.func.isRequired
   };
 
   handlePage(increment) {
-    const { page, onPage, totalPages } = this.props;
-    if(page >= 0 || page <= totalPages)
+    const { page, onPage, results } = this.props;
+    if(page >= 0 || page <= results.length)
       onPage({ page: page + increment });
   }
 
   render() {
-    const { page, totalPages } = this.props;
+    const { page, results } = this.props;
+    if(!results) return null;
+    
     return (
       <div>
         <button disabled={page === 0} onClick={() => this.handlePage(-1)}>Previous</button>
-        <p>Page  {page + 1} of {totalPages}</p>
-        <button disabled={page === totalPages - 1} onClick={() => this.handlePage(+1)}>Next</button>
+        <p>Page  {page + 1} of {results.length}</p>
+        <button disabled={page === results.length - 1} onClick={() => this.handlePage(+1)}>Next</button>
       </div>
     );
   }

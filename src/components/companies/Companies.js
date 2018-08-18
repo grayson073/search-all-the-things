@@ -3,22 +3,14 @@ import PropTypes from 'prop-types';
 import Company from './Company';
 
 export default class Companies extends Component {
-  
-  state = {
-    page: 0
-  };
 
   static propTypes = {
-    results: PropTypes.arrayOf(Array)
-  };
-
-  handlePaging = (page) => {
-    this.setState(page);
+    results: PropTypes.arrayOf(Array),
+    page: PropTypes.number.isRequired
   };
 
   render() {
-    const { page } = this.state;
-    const { results } = this.props;
+    const { results, page } = this.props;
     if(!results) return null;
     return (
       <Fragment>
