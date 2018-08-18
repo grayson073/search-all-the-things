@@ -3,7 +3,7 @@ import Companies from './companies';
 import qs from 'query-string';
 import PropTypes from 'prop-types';
 import Paging from '../paging/Paging';
-import { getSectorData, getStockData } from '../../services/iextradingAPI';
+import { getSectorData } from '../../services/iextradingAPI';
 
 export default class Results extends Component {
 
@@ -41,7 +41,6 @@ export default class Results extends Component {
     const search = this.searchTerm;
     if(!search) return;
 
-    // if(search.length > 5) {
     getSectorData(search)
       .then(companies => {
         let pages = [];
@@ -51,14 +50,6 @@ export default class Results extends Component {
         }
         this.setState({ results: pages, search });
       });
-    // }
-    // else {
-    //   getStockData(search)
-    //     .then(company => {
-    //       console.log('ONE COMPANY', company);
-    //       this.setState({ results: company });
-    //     });
-    // }
   }
  
   render() {
@@ -66,8 +57,15 @@ export default class Results extends Component {
 
     return (
       <div>
-        <Paging onPage={this.handlePaging} page={page} results={results}/>
-        <Companies results={results} page={page}/>
+
+        { results ?
+          <div>
+            <Paging onPage={this.handlePaging} page={page} results={results}/>
+            <Companies results={results} page={page}/>
+          </div>
+          : <p>Please select a sector and click search...</p>
+        }
+
       </div>
     );
   }

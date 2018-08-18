@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import styles from './Company.css';
 
 export default class Companies extends Component {
 
@@ -16,7 +16,9 @@ export default class Companies extends Component {
 
     return (
       <li>
-        <h3>{companyName} ({symbol})</h3><br/>
+        <Link to={`/companies/${symbol}`}>
+          <h3>{companyName} ({symbol})</h3><br/>
+        </Link>
         Latest Price: {latestPrice}<br/>
         52-Week High: {week52High}<br/>
         52-Week Low: {week52Low}<br/>
