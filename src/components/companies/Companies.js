@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Company from './Company';
-import Paging from '../paging/Paging';
 
 export default class Companies extends Component {
   
@@ -10,7 +9,7 @@ export default class Companies extends Component {
   };
 
   static propTypes = {
-    results: PropTypes.arrayOf(Array),
+    results: PropTypes.arrayOf(Array)
   };
 
   handlePaging = (page) => {
@@ -23,9 +22,6 @@ export default class Companies extends Component {
     if(!results) return null;
     return (
       <Fragment>
-        <section>
-          <Paging onPage={this.handlePaging} page={page} totalPages={results.length}/>
-        </section>
         <ul>
           {results[page].map((result, i) => (
             <Company key={i} company={result}/>
