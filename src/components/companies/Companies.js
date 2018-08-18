@@ -4,6 +4,7 @@ import Company from './Company';
 import Paging from '../paging/Paging';
 
 export default class Companies extends Component {
+  
   state = {
     page: 0
   };
