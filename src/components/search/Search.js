@@ -65,6 +65,11 @@ render() {
         ))}
       </select>
       <button disabled={!search}>Search</button>
+      <br/>
+      <label>
+      Ticker Symbol:&nbsp;
+      <input size="30" value={search} onChange={this.handleChangeSearch}></input>
+      </label>
     </form>
   );
 }

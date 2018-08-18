@@ -9,7 +9,7 @@ export default class Companies extends Component {
   };
 
   static propTypes = {
-    results: PropTypes.arrayOf(Array),
+    results: PropTypes.arrayOf(Array)
   };
 
   handlePaging = (page) => {

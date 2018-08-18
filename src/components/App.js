@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Results from './companies/Results';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 class App extends Component {
 
@@ -17,6 +17,7 @@ class App extends Component {
           <main>
             <Switch>
               <Route exact path="/companies" component={Results}/>
+              <Redirect to="/"/>
             </Switch>
           </main>
         </div>
