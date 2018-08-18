@@ -21,6 +21,12 @@ export default class Results extends Component {
     this.searchStocks();
   }
 
+  componentDidUpdate({ location }) {
+    const { search: oldSearch } = qs.parse(location.search);
+    if(oldSearch === this.searchTerm) return;
+    this.searchStocks();
+  }
+
   get searchTerm() {
     const { location } = this.props;
     const { search } = qs.parse(location.search);
@@ -31,19 +37,17 @@ export default class Results extends Component {
     const search = this.searchTerm;
     if(!search) return;
 
-    if(search.length > 5) {
-      getSectorData(search)
-        .then(companies => {
-          console.log('ALL COMPANIES', companies);
-          let pages = [];
-          for(let i = 0; i < companies.length; i += 25) {
-            let chunk = companies.slice(i, i + 25);
-            pages.push(chunk);
-          }
-          console.log('CHUNKS FOR EACH PAGE', pages);
-          this.setState({ results: pages });
-        });
-    }
+    // if(search.length > 5) {
+    getSectorData(search)
+      .then(companies => {
+        let pages = [];
+        for(let i = 0; i < companies.length; i += 25) {
+          let chunk = companies.slice(i, i + 25);
+          pages.push(chunk);
+        }
+        this.setState({ results: pages, search });
+      });
+    // }
     // else {
     //   getStockData(search)
     //     .then(company => {
@@ -51,10 +55,7 @@ export default class Results extends Component {
     //       this.setState({ results: company });
     //     });
     // }
-
-
   }
-
  
   render() {
     const { results } = this.state;
