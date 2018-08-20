@@ -57,7 +57,6 @@ handleTickerChange = (ticker) => {
 handleTicker = event => {
   const { ticker } = this.state;
   event.preventDefault();
-  console.log('Handle Ticker', ticker);
 
   const { history } = this.props;
   history.push({

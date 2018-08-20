@@ -34,13 +34,19 @@ export default class CompanyDetail extends Component {
   }
 
   componentDidUpdate({ location }) {
-    console.log(location.pathname);
-    console.log(this.path);
+    if(location.pathname !== this.path) {
+      const ticker = this.path.split('/').slice(2);
+      getStockData(ticker)
+        .then(company => {
+          this.setState({ company: company });
+        })
+        .catch(console.log);
+    }
   }
 
   get path() {
     const { location } = this.props;
-    const { path } = qs.parse(location.path);
+    const path = location.pathname;
     return path;
   }
 
