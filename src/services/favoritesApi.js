@@ -5,12 +5,9 @@ const FAVORITES_URL = `${URL}/favorites`;
 
 const getFavoriteUrl = id => `${FAVORITES_URL}/id-${id}.json`;
 
-export const addFavorite = ({ company, book, news }) => {
-  const url = getFavoriteUrl(company.symbol);
-  console.log('ADD FAVORITE COMPANY', company);
-  return put(url, (company.symbol, {
-    company, book, news
-  }));
+export const addFavorite = ({ symbol, companyName }) => {
+  const url = getFavoriteUrl(symbol);
+  return put(url, { symbol, companyName });
 };
 
 export const getFavorites = () => {
