@@ -28,7 +28,6 @@ static propTypes = {
 };
 
 componentDidMount() {
-  console.log('component did mount');
   const { location } = this.props;
   const { search = '' } = qs.parse(location.search);
   this.setState({ search });
@@ -46,7 +45,7 @@ handleSubmit = event => {
   const { history } = this.props;
   history.push({
     pathname: '/companies',
-    search: qs.stringify({ search })
+    search: qs.stringify({ search, page: 1 })
   });
 };
 

@@ -15,7 +15,7 @@ export default class Companies extends Component {
     return (
       <Fragment>
         <ul>
-          {results[page].map((result, i) => (
+          {results[page - 1].map((result, i) => (
             <Company key={i} company={result}/>
           ))}
         </ul>
