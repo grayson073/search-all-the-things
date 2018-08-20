@@ -19,7 +19,6 @@ export default class CompanyDetail extends Component {
     
     getStockData(id)
       .then(company => {
-        console.log('ONE COMPANY', company);
         this.setState({ company: company });
       })
       .catch(console.log);
@@ -43,10 +42,8 @@ export default class CompanyDetail extends Component {
         .catch(console.log);
     }
     else {
-      console.log('state.company', this.state.company);
-      addFavorite(this.state.company)
+      addFavorite(company.company)
         .then(favorite => {
-          console.log('FAVORITE', favorite);
           this.setState({ favorite });
         })
         .catch(console.log);

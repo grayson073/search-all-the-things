@@ -11,13 +11,11 @@ export default class Favorite extends Component {
   render() {
 
     const { company } = this.props;
-    const { symbol } = company;
-
 
     return (
       <li>
-        <Link to ={`/companies/${symbol}`}>
-          {company}
+        <Link to={`/companies/${company.symbol}`}>
+          <h2>{company.companyName}  ({company.symbol})</h2>
         </Link>
       </li>
     );

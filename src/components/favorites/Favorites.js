@@ -20,11 +20,14 @@ export default class componentName extends Component {
       if(!favorites) return null;
 
       return (
-        <ul>
-          {favorites.map(favorite => {
-            return <Favorite key={favorite.id} stock={favorite}/>;
-          })}
-        </ul>
+        <div>
+          <h1>Favorite Page</h1>
+          <ul>
+            {favorites.map(favorite => {
+              return <Favorite key={favorite.symbol} company={favorite}/>;
+            })}
+          </ul>
+        </div>
       );
     }
 }
