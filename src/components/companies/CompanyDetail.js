@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import qs from 'query-string';
 import { getStockData } from '../../services/iextradingAPI';
 import { removeFavorite, addFavorite, getFavorite } from '../../services/favoritesApi';
 
@@ -11,6 +12,8 @@ export default class CompanyDetail extends Component {
   };
 
   static propTypes = {
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired
   };
 
@@ -29,6 +32,18 @@ export default class CompanyDetail extends Component {
       })
       .catch(console.log);
   }
+
+  componentDidUpdate({ location }) {
+    console.log(location.pathname);
+    console.log(this.path);
+  }
+
+  get path() {
+    const { location } = this.props;
+    const { path } = qs.parse(location.path);
+    return path;
+  }
+
 
   handleClick = () => {
     const { company, favorite } = this.state;
