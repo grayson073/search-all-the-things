@@ -11,8 +11,9 @@ export default class Paging extends Component {
 
   handlePage(increment) {
     const { page, onPage, results } = this.props;
-    if(page >= 0 || page <= results.length)
-      onPage({ page: page + increment });
+    if(page >= 1 || page <= results.length) {
+      onPage(page + increment);
+    }
   }
 
   render() {
@@ -21,9 +22,9 @@ export default class Paging extends Component {
     
     return (
       <div>
-        <button disabled={page === 0} onClick={() => this.handlePage(-1)}>Previous</button>
-        <p>Page  {page + 1} of {results.length}</p>
-        <button disabled={page === results.length - 1} onClick={() => this.handlePage(+1)}>Next</button>
+        <button disabled={page === 1} onClick={() => this.handlePage(-1)}>Previous</button>
+        <p>Page  {page} of {results.length}</p>
+        <button disabled={page === results.length} onClick={() => this.handlePage(+1)}>Next</button>
       </div>
     );
   }

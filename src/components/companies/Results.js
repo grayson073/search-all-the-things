@@ -10,11 +10,12 @@ export default class Results extends Component {
   state = {
     search: '',
     results: null,
-    page: 0,
+    page: 1,
   };
 
   static propTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -23,12 +24,21 @@ export default class Results extends Component {
 
   componentDidUpdate({ location }) {
     const { search: oldSearch } = qs.parse(location.search);
+    const { page: oldPage } = qs.parse(location.search);
+    if(oldPage !== this.pageNumber) this.setState({ page: this.pageNumber });
     if(oldSearch === this.searchTerm) return;
     this.searchStocks();
   }
 
   handlePaging = (page) => {
-    this.setState(page);
+    const { history } = this.props;
+    const { search } = this.state;
+    this.setState({ page }, () => {
+      history.push({
+        pathname: '/companies',
+        search: qs.stringify({ search, page })
+      });
+    });
   };
 
   get searchTerm() {
@@ -37,8 +47,16 @@ export default class Results extends Component {
     return search;
   }
 
+  get pageNumber() {
+    const { location } = this.props;
+    const { page } = qs.parse(location.search);
+    return page;
+  }
+
   searchStocks() {
     const search = this.searchTerm;
+    const page = this.pageNumber;
+    this.setState({ page });
     if(!search) return;
 
     getSectorData(search)
@@ -57,15 +75,13 @@ export default class Results extends Component {
 
     return (
       <div>
-
-        { results ?
+        {results ?
           <div>
-            <Paging onPage={this.handlePaging} page={page} results={results}/>
-            <Companies results={results} page={page}/>
+            <Paging onPage={this.handlePaging} page={+page} results={results}/>
+            <Companies results={results} page={+page}/>
           </div>
           : <p>Please select a sector and click search...</p>
         }
-
       </div>
     );
   }

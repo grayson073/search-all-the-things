@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import qs from 'query-string';
+
 export default class Search extends Component {
 
   state = {
     search: '',
+    ticker: '',
     sectors: [
       'Consumer Cyclical',
       'Technology',
@@ -32,11 +34,11 @@ componentDidMount() {
   this.setState({ search });
 }
 
-handleSectorSelect = (search) => {
+handleChange = (search) => {
   this.setState({ search });
 };
 
-handleSubmitSector = event => {
+handleSubmit = event => {
   event.preventDefault();
   const { search } = this.state;
   if(!search) return;
@@ -44,12 +46,22 @@ handleSubmitSector = event => {
   const { history } = this.props;
   history.push({
     pathname: '/companies',
-    search: qs.stringify({ search })
+    search: qs.stringify({ search, page: 1 })
   });
 };
 
-handleChangeSearch = ({ target }) => {
-  this.setState({ search: target.value });
+handleTickerChange = (ticker) => {
+  this.setState({ ticker });
+};
+
+handleTicker = event => {
+  const { ticker } = this.state;
+  event.preventDefault();
+
+  const { history } = this.props;
+  history.push({
+    pathname: `/companies/${ticker}`
+  });
 };
 
 render() {
@@ -57,20 +69,23 @@ render() {
   const { sectors, search } = this.state;
 
   return (
-    <form className="search-form" onSubmit={event => this.handleSubmitSector(event)}>
-      <select onChange={({ target }) => this.handleSectorSelect(target.value)}>
-        <option value="" >Select a sector:</option>
-        {sectors.map(sector => (
-          <option key={sector} value={sector}>{sector}</option>
-        ))}
-      </select>
-      <button disabled={!search}>Search</button>
-      {/* <br/>
-      <label>
-      Ticker Symbol:&nbsp;
-      <input size="30" value={search} onChange={this.handleChangeSearch}></input>
-      </label> */}
-    </form>
+    <div>
+      <form className="search-form" onSubmit={event => this.handleSubmit(event)}>
+        <select value={search} onChange={({ target }) => this.handleChange(target.value)}>
+          <option value="" >Select a sector</option>
+          {sectors.map(sector => (
+            <option key={sector} value={sector}>{sector}</option>
+          ))}
+        </select>
+        <button disabled={!search}>Search</button>
+      </form>
+
+      <form onSubmit={event => this.handleTicker(event)}>
+        <input onChange={({ target }) => this.handleTickerChange(target.value)} type="text" placeholder="Enter a stock ticker"></input> &nbsp;
+        <button type="submit">Enter</button>
+      </form>
+    </div>
+
   );
 }
 }
