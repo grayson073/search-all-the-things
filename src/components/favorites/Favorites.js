@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-// import { getFavorites } from '../../services/favoritesApi';
+import { getFavorites } from '../../services/favoritesApi';
 import Favorite from './Favorite';
 
 export default class componentName extends Component {
     state= {
       favorites: null
-    }
+    };
 
     componentDidMount() {
       getFavorites()

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getStockData } from '../../services/iextradingAPI';
+import { removeFavorite, addFavorite, getFavorite } from '../../services/favoritesApi';
 
 export default class CompanyDetail extends Component {
 
   state = {
-    company: null
+    company: null,
+    favorite: null
   };
 
   static propTypes = {
@@ -17,17 +19,50 @@ export default class CompanyDetail extends Component {
     
     getStockData(id)
       .then(company => {
+        console.log('ONE COMPANY', company);
         this.setState({ company: company });
-      });
+      })
+      .catch(console.log);
+
+    getFavorite(id)
+      .then(favorite => {
+        this.setState({ favorite });
+      })
+      .catch(console.log);
   }
 
+  handleClick = () => {
+    const { company, favorite } = this.state;
+    const isFavorite = !!favorite;
+
+    if(isFavorite) {
+      removeFavorite(company.company.symbol)
+        .then(() => {
+          this.setState({ favorite: null });
+        })
+        .catch(console.log);
+    }
+    else {
+      console.log('state.company', this.state.company);
+      addFavorite(this.state.company)
+        .then(favorite => {
+          console.log('FAVORITE', favorite);
+          this.setState({ favorite });
+        })
+        .catch(console.log);
+    }
+  };
+
   render() {
-    const { company } = this.state;
+    const { company, favorite } = this.state;
 
     if(!company) return null;
 
     return (
       <div>
+        <button onClick={this.handleClick}>
+          {favorite ? 'Remove from' : 'Add to' } favorites
+        </button>
         <p>
           <b>Company:</b>
           <br/>{company.book.quote.companyName}
