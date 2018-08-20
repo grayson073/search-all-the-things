@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import qs from 'query-string';
+
 export default class Search extends Component {
 
   state = {
@@ -27,16 +28,17 @@ static propTypes = {
 };
 
 componentDidMount() {
+  console.log('component did mount');
   const { location } = this.props;
   const { search = '' } = qs.parse(location.search);
   this.setState({ search });
 }
 
-handleSectorSelect = (search) => {
+handleChange = (search) => {
   this.setState({ search });
 };
 
-handleSubmitSector = event => {
+handleSubmit = event => {
   event.preventDefault();
   const { search } = this.state;
   if(!search) return;
@@ -48,28 +50,19 @@ handleSubmitSector = event => {
   });
 };
 
-handleChangeSearch = ({ target }) => {
-  this.setState({ search: target.value });
-};
-
 render() {
 
   const { sectors, search } = this.state;
 
   return (
-    <form className="search-form" onSubmit={event => this.handleSubmitSector(event)}>
-      <select onChange={({ target }) => this.handleSectorSelect(target.value)}>
-        <option value="" >Select a sector:</option>
+    <form className="search-form" onSubmit={event => this.handleSubmit(event)}>
+      <select value={search} onChange={({ target }) => this.handleChange(target.value)}>
+        <option value="" >Select a sector</option>
         {sectors.map(sector => (
           <option key={sector} value={sector}>{sector}</option>
         ))}
       </select>
       <button disabled={!search}>Search</button>
-      {/* <br/>
-      <label>
-      Ticker Symbol:&nbsp;
-      <input size="30" value={search} onChange={this.handleChangeSearch}></input>
-      </label> */}
     </form>
   );
 }
