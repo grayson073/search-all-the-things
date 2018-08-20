@@ -14,7 +14,8 @@ export default class Results extends Component {
   };
 
   static propTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   };
 
   componentDidMount() {
@@ -57,15 +58,13 @@ export default class Results extends Component {
 
     return (
       <div>
-
-        { results ?
+        {results ?
           <div>
             <Paging onPage={this.handlePaging} page={page} results={results}/>
             <Companies results={results} page={page}/>
           </div>
           : <p>Please select a sector and click search...</p>
         }
-
       </div>
     );
   }

@@ -11,8 +11,9 @@ export default class Paging extends Component {
 
   handlePage(increment) {
     const { page, onPage, results } = this.props;
-    if(page >= 0 || page <= results.length)
+    if(page >= 0 || page <= results.length) {
       onPage({ page: page + increment });
+    }
   }
 
   render() {
