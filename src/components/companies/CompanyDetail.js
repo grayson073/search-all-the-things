@@ -4,6 +4,7 @@ import { getStockData } from '../../services/iextradingAPI';
 import { removeFavorite, addFavorite, getFavorite } from '../../services/favoritesApi';
 import styles from './CompanyDetail.css';
 import News from './News';
+import LineChart from './LineChart';
 
 export default class CompanyDetail extends Component {
 
@@ -23,6 +24,7 @@ export default class CompanyDetail extends Component {
     
     getStockData(id)
       .then(company => {
+        console.log('COMPANY', company);
         this.setState({ company: company });
       })
       .catch(console.log);
@@ -94,6 +96,7 @@ export default class CompanyDetail extends Component {
         <p>Low:  {company.book.quote.low}  (52-week low:  {company.book.quote.week52Low})</p>
         <p>Low:  {company.book.quote.low}</p>
         <p></p>
+        <LineChart company={company}/>
         {company.news.length > 0 &&
         <Fragment>
           <h3>News:</h3>
