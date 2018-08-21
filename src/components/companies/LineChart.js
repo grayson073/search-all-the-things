@@ -9,27 +9,32 @@ export default class LineChart extends Component {
     company: PropTypes.object.isRequired
   };
 
-
-  
   render() {
 
     const { company } = this.props;
     const chartLabels = company.chart.map(data => (data.label));
     const high = company.chart.map(data => (data.high));
     const low = company.chart.map(data => (data.low));
+    const close = company.chart.map(data => (data.close));
 
     const data = {
       labels: chartLabels,
       datasets: [
         {
-          label: 'Stock High',
+          label: 'High',
           data: high,
           fill: false,
           borderColor: '#4bc0c0'
         },
         {
-          label: 'Stock Low',
+          label: 'Low',
           data: low,
+          fill: false,
+          borderColor: 'red'
+        },
+        {
+          label: 'Close',
+          data: close,
           fill: false,
           borderColor: 'black'
         }

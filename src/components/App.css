@@ -5,13 +5,14 @@
   color: white;
   background-color: #85bb65;
   border-radius: 10px;
+  min-height: 650px;
 
   a {
-    color: black;
+    color: rgb(255, 255, 255);
     text-decoration: none; 
   }
 
   a:hover {
-    color: #f4ec0a;
+    color: #0a87f4;
   }
 }
