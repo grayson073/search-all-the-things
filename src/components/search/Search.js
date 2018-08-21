@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import qs from 'query-string';
+import styles from './Search.css';
 
 export default class Search extends Component {
 
@@ -69,7 +70,7 @@ render() {
   const { sectors, search } = this.state;
 
   return (
-    <div>
+    <div className={styles.search}>
       <form className="search-form" onSubmit={event => this.handleSubmit(event)}>
         <select value={search} onChange={({ target }) => this.handleChange(target.value)}>
           <option value="" >Select a sector</option>
@@ -81,7 +82,7 @@ render() {
       </form>
 
       <form onSubmit={event => this.handleTicker(event)}>
-        <input onChange={({ target }) => this.handleTickerChange(target.value)} type="text" placeholder="Enter a stock ticker"></input> &nbsp;
+        <input onChange={({ target }) => this.handleTickerChange(target.value)} type="text" placeholder="Enter a stock symbol"></input>
         <button type="submit">Enter</button>
       </form>
     </div>

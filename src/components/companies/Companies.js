@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Company from './Company';
+import styles from './Companies.css';
 
 export default class Companies extends Component {
 
@@ -14,7 +15,7 @@ export default class Companies extends Component {
     if(!results) return null;
     return (
       <Fragment>
-        <ul>
+        <ul className={styles.companies}>
           {results[page - 1].map((result, i) => (
             <Company key={i} company={result}/>
           ))}

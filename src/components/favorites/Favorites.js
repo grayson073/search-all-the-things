@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getFavorites } from '../../services/favoritesApi';
 import Favorite from './Favorite';
+import styles from './Favorites.css';
 
 export default class componentName extends Component {
     state= {
@@ -20,8 +21,8 @@ export default class componentName extends Component {
       if(!favorites) return null;
 
       return (
-        <div>
-          <h1>Favorite Page</h1>
+        <div className={styles.favorites}>
+          <h2>Current favorites:</h2>
           <ul>
             {favorites.map(favorite => {
               return <Favorite key={favorite.symbol} company={favorite}/>;
