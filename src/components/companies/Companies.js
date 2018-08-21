@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Company from './Company';
 import styles from './Companies.css';
@@ -13,14 +13,14 @@ export default class Companies extends Component {
   render() {
     const { results, page } = this.props;
     if(!results) return null;
+
     return (
-      <Fragment>
-        <ul className={styles.companies}>
-          {results[page - 1].map((result, i) => (
-            <Company key={i} company={result}/>
-          ))}
-        </ul>
-      </Fragment>
+      <ul className={styles.companies}>
+        {results[page - 1].map((result, i) => (
+          <Company key={i} company={result}/>
+        ))}
+      </ul>
+
     );
   }
 

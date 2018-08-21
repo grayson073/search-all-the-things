@@ -82,7 +82,12 @@ render() {
       </form>
 
       <form onSubmit={event => this.handleTicker(event)}>
-        <input onChange={({ target }) => this.handleTickerChange(target.value)} type="text" placeholder="Enter a stock symbol"></input>
+        <input 
+          onChange={({ target }) => this.handleTickerChange(target.value)} 
+          maxLength="5" 
+          type="text" 
+          placeholder="Enter a stock symbol">
+        </input>
         <button type="submit">Enter</button>
       </form>
     </div>

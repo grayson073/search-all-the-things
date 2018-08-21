@@ -1,8 +1,10 @@
 :local(.companies) {
+  padding-left: 0px;
+  list-style: none;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
 
-  ul {
-    margin: 0px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
 }
