@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { getStockData } from '../../services/iextradingAPI';
 import { removeFavorite, addFavorite, getFavorite } from '../../services/favoritesApi';
+import styles from './CompanyDetail.css';
+import News from './News';
 
 export default class CompanyDetail extends Component {
 
@@ -76,16 +78,14 @@ export default class CompanyDetail extends Component {
     if(!company) return null;
 
     return (
-      <div>
+      <div className={styles.companyDetail}>
         <button onClick={this.handleClick}>
           {favorite ? 'Remove from' : 'Add to' } favorites
         </button>
-        <p>
-          <b>Company:</b>
-          <br/>{company.book.quote.companyName}
+        <h3>Company:</h3>
+        <br/>{company.book.quote.companyName}
           &nbsp;
-          <a href={company.company.website} target="blank">website</a>
-        </p>
+        <a href={company.company.website} target="blank">(Company Web Site)</a>
         <p><b>CEO:</b><br/>{company.company.CEO}</p>
         <p><b>Description:</b><br/>{company.company.description}</p>
         <p>Latest Price:  {company.book.quote.latestPrice}</p>
@@ -94,13 +94,16 @@ export default class CompanyDetail extends Component {
         <p>Low:  {company.book.quote.low}  (52-week low:  {company.book.quote.week52Low})</p>
         <p>Low:  {company.book.quote.low}</p>
         <p></p>
-        <p></p>
-        <p></p>
-        <h2>News</h2>
-        <p>{company.news[0].datetime}</p>
-        <p>{company.news[0].headline}</p>
-        <p>{company.news[0].summary}</p>
-        <a href={company.news[0].url} target="blank">article link</a>
+        {company.news.length > 0 &&
+        <Fragment>
+          <h3>News:</h3>
+          <ul>
+            {company.news.map((article, i) => (
+              <News key={i} article={article}/>
+            ))}
+          </ul>
+        </Fragment>
+        }
       </div>
     );
   }

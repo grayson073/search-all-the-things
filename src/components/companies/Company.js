@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styles from './Company.css';
 
 export default class Companies extends Component {
 
@@ -15,7 +16,7 @@ export default class Companies extends Component {
     const { ytdChange, latestPrice } = company;
 
     return (
-      <li>
+      <li className={styles.company}>
         <Link to={`/companies/${symbol}`}>
           <h3>{companyName} ({symbol})</h3><br/>
         </Link>

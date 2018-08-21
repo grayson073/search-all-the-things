@@ -108,7 +108,7 @@ export default class Results extends Component {
               page={+page}
             />
           </div>
-          : <p>Please select a sector and click search...</p>
+          : <span>Please select a sector and click search...</span>
         }
       </div>
     );

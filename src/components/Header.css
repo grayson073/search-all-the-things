@@ -1,0 +1,58 @@
+:local(.header) {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+
+    h1 {
+      text-align: center;
+      font-family: 'Racing Sans One', cursive;
+      font-size: 3.2em;
+    }
+
+    button {
+      margin: 5px;
+    }
+
+    nav {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 60vw;
+    }
+
+
+    .ml14 {
+      font-weight: 200;
+      font-size: 3.2em;
+    }
+    
+    .ml14 .text-wrapper {
+      position: relative;
+      display: inline-block;
+      padding-top: 0.1em;
+      padding-right: 0.05em;
+      padding-bottom: 0.15em;
+    }
+    
+    .ml14 .line {
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      background-color: #fff;
+      transform-origin: 100% 100%;
+      bottom: 0;
+    }
+    
+    .ml14 .letter {
+      display: inline-block;
+      line-height: 1em;
+    }
+    
+  }
