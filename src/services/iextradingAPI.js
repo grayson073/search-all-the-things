@@ -9,5 +9,5 @@ export function getSectorData(sector) {
 }
 
 export function getStockData(symbol) {
-  return get(`https://api.iextrading.com/1.0/stock/${symbol}/batch?types=company,book,news`);
+  return get(`https://api.iextrading.com/1.0/stock/${symbol}/batch?types=company,book,news,chart`);
 }
