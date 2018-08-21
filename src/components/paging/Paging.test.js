@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Header from './Header';
+import Paging from './Paging';
 import toJSON from 'enzyme-to-json';
 
-describe('Header', () => {
+describe('Paging', () => {
 
   it('renders as designed', () => {
     // shallow render is "visualization of what got render"
-    const wrapper = shallow(<Header onSearch={() => {}}/>);
+    const wrapper = shallow(<Paging onSearch={() => {}}/>);
     // make sure it is still doing the same thing
     expect(toJSON(wrapper)).toMatchSnapshot();
   });

@@ -3,16 +3,15 @@ import Search from './search/Search';
 import { Route, Link } from 'react-router-dom';
 import styles from './Header.css';
 import $ from 'jquery';
-
 export default class Header extends Component {
   
   componentDidMount() {
-    /* eslint-disable-next-line */
     // Wrap every letter in a span
     $('.ml14 .letters').each(function(){
       /* eslint-disable-next-line */
-      $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
-    });
+      $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, '<span class="letter">$&</span>'));
+    /* eslint-disable-next-line */
+  });
     /* eslint-disable-next-line */
     anime.timeline({ loop: false })
       .add({
@@ -34,13 +33,6 @@ export default class Header extends Component {
           return 150 + 35 * i;
         }
       });
-    // .add({
-    //   targets: '.ml14',
-    //   opacity: 0,
-    //   duration: 1000,
-    //   easing: 'easeOutExpo',
-    //   delay: 1000
-    // });
   }
   
   render() {

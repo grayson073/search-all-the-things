@@ -1,0 +1,9 @@
+:local(.home) {
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 40vw;
+    height: 40vw;
+  }
+}

@@ -10,7 +10,8 @@
   },
   "plugins": [
     "babel",
-    "react"
+    "react",
+    "jquery"
   ],
   "env": {
     "es6": true,
