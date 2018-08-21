@@ -11,6 +11,8 @@ export default class Results extends Component {
     search: '',
     results: null,
     page: 1,
+    loading: false,
+    error: null
   };
 
   static propTypes = {
@@ -59,6 +61,11 @@ export default class Results extends Component {
     this.setState({ page });
     if(!search) return;
 
+    this.setState({
+      loading: true,
+      error: null
+    });
+
     getSectorData(search)
       .then(companies => {
         let pages = [];
@@ -67,18 +74,39 @@ export default class Results extends Component {
           pages.push(chunk);
         }
         this.setState({ results: pages, search });
+      },
+      err => {
+        this.setState({ error: err.message });
+      }
+      )
+      .then(() => {
+        this.setState({ loading: false });
       });
+
   }
  
   render() {
-    const { results, page } = this.state;
+    const { results, page, loading, error } = this.state;
 
     return (
       <div>
+        {(loading || error) &&
+          <section className="notifications">
+            {loading && <div>Loading...</div>}
+            {error && <div>{error}</div>}
+          </section>
+        }
         {results ?
           <div>
-            <Paging onPage={this.handlePaging} page={+page} results={results}/>
-            <Companies results={results} page={+page}/>
+            <Paging 
+              onPage={this.handlePaging} 
+              page={+page} 
+              results={results}
+            />
+            <Companies 
+              results={results} 
+              page={+page}
+            />
           </div>
           : <p>Please select a sector and click search...</p>
         }
