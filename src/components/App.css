@@ -3,7 +3,7 @@
   margin: 10px;
   margin-top: 20px;
   color: white;
-  background-color: #bb5959;
+  background-color: #85bb65;
   border-radius: 10px;
 
   a {
@@ -14,5 +14,4 @@
   a:hover {
     color: #f4ec0a;
   }
-
 }
