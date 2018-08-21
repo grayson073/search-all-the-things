@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from './Paging.css';
 
 export default class Paging extends Component {
 
@@ -21,7 +22,7 @@ export default class Paging extends Component {
     if(!results) return null;
     
     return (
-      <div>
+      <div className={styles.paging}>
         <button disabled={page === 1} onClick={() => this.handlePage(-1)}>Previous</button>
         <p>Page  {page} of {results.length}</p>
         <button disabled={page === results.length} onClick={() => this.handlePage(+1)}>Next</button>
