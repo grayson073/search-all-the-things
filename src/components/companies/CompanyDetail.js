@@ -24,7 +24,6 @@ export default class CompanyDetail extends Component {
     
     getStockData(id)
       .then(company => {
-        console.log('COMPANY', company);
         this.setState({ company: company });
       })
       .catch(console.log);
