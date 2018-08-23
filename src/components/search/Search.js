@@ -88,7 +88,7 @@ render() {
           maxLength="5" 
           type="text" 
           placeholder="Enter a stock symbol"
-          >
+        >
         </input>
         <button type="submit">Enter</button>
       </form>
