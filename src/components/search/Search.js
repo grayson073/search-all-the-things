@@ -58,6 +58,7 @@ handleTickerChange = (ticker) => {
 handleTicker = event => {
   const { ticker } = this.state;
   event.preventDefault();
+  if(ticker === '' || ticker.length > 5) return;
 
   const { history } = this.props;
   history.push({
@@ -86,7 +87,8 @@ render() {
           onChange={({ target }) => this.handleTickerChange(target.value)} 
           maxLength="5" 
           type="text" 
-          placeholder="Enter a stock symbol">
+          placeholder="Enter a stock symbol"
+          >
         </input>
         <button type="submit">Enter</button>
       </form>
