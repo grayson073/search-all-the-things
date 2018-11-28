@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Companies from './companies';
+import Companies from './Companies';
 import qs from 'query-string';
 import PropTypes from 'prop-types';
 import Paging from '../paging/Paging';
