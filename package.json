@@ -10,7 +10,7 @@
     "jest": "jest -c ./jest/jest.config.js",
     "test:watch": "npm run jest -- --watch",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --hot --open --mode development"
+    "start": "webpack-dev-server --hot --open --mode production"
   },
   "repository": {
     "type": "git",
