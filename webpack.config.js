@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path,
     filename: 'bundle.[hash].js',
-    publicPath: '/'
+    publicPath: '/search-all-the-things/'
   },
   // mode (will eventually be cmd line arg in package.json)
   mode: 'development',
