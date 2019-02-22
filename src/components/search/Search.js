@@ -72,7 +72,7 @@ render() {
 
   return (
     <div className={styles.search}>
-      <form className="search-form" onSubmit={event => this.handleSubmit(event)}>
+      <form className="search-form" onSubmit={this.handleSubmit}>
         <select value={search} onChange={({ target }) => this.handleChange(target.value)}>
           <option value="" >Select a sector</option>
           {sectors.map(sector => (

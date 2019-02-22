@@ -2,9 +2,11 @@
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  min-width: 430px;
 
   img {
     width: 40vw;
     height: 40vw;
+    object-fit: contain;
   }
 }

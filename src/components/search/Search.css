@@ -3,6 +3,7 @@
   flex-flow: row wrap;
   justify-content: space-between;
   width: 80vw;
+  min-width: 430px;
 
   select {
     font-size: 20px;

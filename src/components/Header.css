@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
+  min-width: 430px;
 
     h1 {
       text-align: center;
@@ -23,6 +24,7 @@
       margin-top: 20px;
       margin-bottom: 20px;
       width: 60vw;
+      min-width: 430px;
     }
 
 
