@@ -6,6 +6,7 @@
   background-color: #85bb65;
   border-radius: 10px;
   min-height: 650px;
+  min-width: 430px;
 
   a {
     color: rgb(255, 255, 255);
